@@ -8,6 +8,7 @@
 
 using System.Collections;
 using System.Collections.Concurrent;
+using System.Runtime.CompilerServices;
 using TiposPorReferencia.Class;
 
 Teacher teacher = new Teacher(1, "John Doe", "Math Teacher", "Mathematics");
@@ -360,5 +361,23 @@ Bebida del1 = new Bebida("Cocacola",10,12.34);
 del1.EjemploDelegado();
 
 del1.EjemploFunc();
+
+//Ejemplo de Span 
+Span<char> span = ['H', 'e', 'l', 'l', 'o'];
+
+string[] brands = ["open", "seat"];
+ReadOnlySpan<string> readOnlySpan = brands;
+
+
+//Predicados es una implementacion de los delegado
+static bool IsEven(int number)
+{
+    return number % 2 == 0;
+}
+
+var numbers = new List<int>();
+numbers.AddRange(new int[] { 1, 2, 3, 4, 5, 6, 7, 8, 9, 10 });
+var predicate = new Predicate<int>(IsEven);
+var dividers = numbers.FindAll(predicate);
 
 Console.ReadKey();

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Security.AccessControl;
 using System.Text;
+using TiposPorReferencia.Interfaces;
 
 namespace TiposPorReferencia.Class
 {
@@ -9,14 +10,29 @@ namespace TiposPorReferencia.Class
     public delegate void Imprimir<T>(T valor);
 
 
-    public class Bebida
+    public class Bebida : IBebidaAlcoholica
     {
-
-        public string Nombre { get; set; }
         private double Precio { get; set; } 
         
         protected int Cantidad { get; set; }
+        public int Alcohol { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
+        public string Nombre 
+        {
+            get => field;
+
+            set
+            {
+                if (value.Length > 0)
+                {
+                    field = value;
+                }
+                else
+                {
+                    Console.WriteLine("El nombre no puede ser vacío");
+                }
+            }
+        }
         public void ImprimirPantalla(string v) 
         {
             Console.WriteLine(v);
@@ -84,6 +100,8 @@ namespace TiposPorReferencia.Class
             this.Cantidad = cantidad;
             this.Precio = precio;
         }
+
+        
 
     }
 
